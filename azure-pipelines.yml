@@ -36,6 +36,6 @@ steps:
       sudo docker pull diegodesalles/simple-project:latest
       sudo docker stop simple-project || true
       sudo docker rm simple-project || true
-      sudo docker run -d --name simple-project -p 4173:4173 diegodesalles/simple-project:latest
+      sudo docker run -d --name simple-project --network microfrontend -p 4173:4173 diegodesalles/simple-project:latest
     EOF
   displayName: 'Deploy to Azure VM'
