@@ -10,6 +10,12 @@ pool:
   name: Teste
   vmImage: ubuntu-latest
 
+variables:
+  DOCKER_PW: $(DOCKER_PW)
+  DOCKER_LOGIN: $(DOCKER_LOGIN)
+  SSH_PRIVATE_KEY: $(SSH_PRIVATE_KEY)
+  AZURE_IP: $(AZURE_IP)
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -26,13 +32,13 @@ steps:
   displayName: 'Build Docker image'
 
 - script: |
-    echo "${{ secrets.DOCKER_PW }}" | docker login -u "${{ secrets.DOCKER_LOGIN }}" --password-stdin
+    echo $(DOCKER_PW) | docker login -u $(DOCKER_LOGIN) --password-stdin
     docker tag diegodesalles/simple-project diegodesalles/simple-project:latest
     docker push diegodesalles/simple-project:latest
   displayName: 'Deploy to Docker Hub'
 
 - script: |
-    ssh -i ~/.ssh/${{ secrets.SSH_PRIVATE_KEY }} azureuser@${{ secrets.AZURE_IP }} << 'EOF'
+    ssh -i $(SSH_PRIVATE_KEY) azureuser@$(AZURE_IP) << 'EOF'
       sudo docker pull diegodesalles/simple-project:latest
       sudo docker stop simple-project || true
       sudo docker rm simple-project || true
