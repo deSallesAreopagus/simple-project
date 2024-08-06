@@ -1,0 +1,13 @@
+name: Teste SSH VM
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-ssh:
+    runs-on: [self-hosted, Teste]
+
+    steps:
+      - name: Teste SSH
+        run: |
+          ssh -i ~/.ssh/tivit_key.pem azureuser@74.249.104.3 'echo "Teste de conexão"'
