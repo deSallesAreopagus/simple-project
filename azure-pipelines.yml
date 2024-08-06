@@ -10,12 +10,6 @@ pool:
   name: Teste
   vmImage: ubuntu-latest
 
-variables:
-  DOCKER_PW: $(DOCKER_PW)
-  DOCKER_LOGIN: $(DOCKER_LOGIN)
-  SSH_PRIVATE_KEY: $(SSH_PRIVATE_KEY)
-  AZURE_IP: $(AZURE_IP)
-
 steps:
 - task: NodeTool@0
   inputs:
