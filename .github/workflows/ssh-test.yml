@@ -5,7 +5,7 @@ on:
 
 jobs:
   test-ssh:
-    runs-on: [self-hosted, diego-desktop]
+    runs-on: [self-hosted]
 
     steps:
       - name: Teste SSH
