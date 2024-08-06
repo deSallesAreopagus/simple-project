@@ -20,3 +20,22 @@ steps:
     yarn install
     yarn build
   displayName: 'yarn install and build'
+
+- script: |
+    docker build -t diegodesalles/simple-project .
+  displayName: 'Build Docker image'
+
+- script: |
+    echo $(DOCKER_PW) | docker login -u $(DOCKER_LOGIN) --password-stdin
+    docker tag diegodesalles/simple-project diegodesalles/simple-project:latest
+    docker push diegodesalles/simple-project:latest
+  displayName: 'Deploy to Docker Hub'
+
+- script: |
+    ssh -i $(SSH_PRIVATE_KEY) azureuser@$(AZURE_IP) << 'EOF'
+      sudo docker pull diegodesalles/simple-project:latest
+      sudo docker stop simple-project || true
+      sudo docker rm simple-project || true
+      sudo docker run -d --name simple-project -p 4173:4173 diegodesalles/simple-project:latest
+    EOF
+  displayName: 'Deploy to Azure VM'
