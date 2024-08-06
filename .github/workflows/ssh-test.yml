@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Teste SSH
         run: |
-          ssh -i ~/.ssh/tivit_key.pem azureuser@74.249.104.3 'echo "Teste de conexão"'
+          ssh -i ~/.ssh/tivit_key.pem azureuser@74.249.104.3 'git clone git@github.com:deSallesAreopagus/simple-project.git'
