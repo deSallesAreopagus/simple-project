@@ -8,8 +8,8 @@ export default defineConfig({
     react(),
     federation({
       remotes: {
-        'microfrontend1': 'http://product-list:3001/assets/remoteEntry.js',
-        'microfrontend2': 'http://user-login:3002/assets/remoteEntry.js',
+        'microfrontend1': 'http://172.18.0.2:3001/assets/remoteEntry.js',
+        'microfrontend2': 'http://172.18.0.3:3002/assets/remoteEntry.js',
       }
     })
   ],
