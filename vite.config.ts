@@ -8,8 +8,8 @@ export default defineConfig({
     react(),
     federation({
       remotes: {
-        'microfrontend1': 'http://172.18.0.2:3001/dist/assets/remoteEntry.js',
-        'microfrontend2': 'http://172.18.0.3:3002/dist/assets/remoteEntry.js',
+        'microfrontend1': 'http://172.18.0.2:3001/assets/remoteEntry.js',
+        'microfrontend2': 'http://172.18.0.3:3002/assets/remoteEntry.js',
       }
     })
   ],
@@ -17,7 +17,6 @@ export default defineConfig({
     target: 'esnext'
   },
   server: {
-    port: 3000,
-    cors: true
+    port: 3000
   }
 })
