@@ -17,6 +17,7 @@ export default defineConfig({
     target: 'esnext'
   },
   server: {
-    port: 3000
+    port: 3000,
+    cors: true
   }
 })
